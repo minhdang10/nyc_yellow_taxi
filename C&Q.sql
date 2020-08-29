@@ -1,4 +1,4 @@
-1. External Table
+--1. External Table
 
 CREATE EXTERNAL TABLE yellow_taxi
         (VendorID INT,
@@ -21,7 +21,7 @@ CREATE EXTERNAL TABLE yellow_taxi
      ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
      LOCATION 's3://yellow-taxi-bucket/data/';
 
-2. Q1
+-- 2. Q1
 SELECT FORMAT_NUMBER(SUM(Fare_amount),2) AS Total_Fare_Amount, 
 MONTH(tpep_pickup_datetime) AS Month_of_2018
 FROM   yellow_taxi
@@ -47,22 +47,22 @@ WHERE  RateCodeID = 1
 GROUP BY Month(tpep_pickup_datetime)
 ORDER BY Month(tpep_pickup_datetime);
 
-1	26,698,121.12
-2	25,780,643.47
-3	29,570,741.41
-4	29,955,538.13
-5	30,225,146.45
-6	28,535,262.05
-7	25,559,459.15
-8	25,459,718.99
-9	26,400,844.77
-10	28,475,398.60
-11	26,445,826.93
-12	27,275,036.86
-Time taken: 181.524 seconds, Fetched 12 row(s)
+-- 1	26,698,121.12
+-- 2	25,780,643.47
+-- 3	29,570,741.41
+-- 4	29,955,538.13
+-- 5	30,225,146.45
+-- 6	28,535,262.05
+-- 7	25,559,459.15
+-- 8	25,459,718.99
+-- 9	26,400,844.77
+-- 10	28,475,398.60
+-- 11	26,445,826.93
+-- 12	27,275,036.86
+-- Time taken: 181.524 seconds, Fetched 12 row(s)
 
 
-3. Q2
+-- 3. Q2
 SELECT ROUND(AVG(Fare_amount/Trip_distance),3) AS Average_Cost_Per_Mile
 FROM   yellow_taxi
 WHERE  RateCodeID = 1
@@ -85,8 +85,8 @@ WHERE  RateCodeID = 1
   AND  Improvement_surcharge IN (0,0.3)
   AND  Total_amount > 0;
 
-3.122
-Time taken: 180.349 seconds, Fetched 1 row(s)
+-- 3.122
+-- Time taken: 180.349 seconds, Fetched 1 row(s)
 
 
 4. Q3
@@ -118,8 +118,8 @@ GROUP BY DATE_FORMAT(tpep_pickup_datetime,'EEEE')
 ORDER BY Average_Single_Rider_Trips ASC
 LIMIT 1;
 
-Sunday	162293.904
-Time taken: 320.847 seconds, Fetched 1 row(s)
+-- Sunday	162293.904
+-- Time taken: 320.847 seconds, Fetched 1 row(s)
 
-*total every single rider, take the average of each days and return the lowest
-eg: (5+7+3+12)/4 for Jan
+-- *total every single rider, take the average of each days and return the lowest
+-- eg: (5+7+3+12)/4 for Jan
